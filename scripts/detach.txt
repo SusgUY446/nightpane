@@ -1,0 +1,3 @@
+select vdisk file="c:\build\image\image.vhd"
+detach vdisk
+exit
