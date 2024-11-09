@@ -1,3 +1,4 @@
 .xmake/
 build/
 os.bin
+oskrnl.elf

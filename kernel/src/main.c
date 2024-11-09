@@ -47,7 +47,7 @@ void KiMain(void) {
     framebuffer = framebuffer_request.response->framebuffers[0];
     KiChangeBackground(0x0000000);
 
-    KiTerminalPrint("H");
+    KiTerminalPrint("Y");
     
 
     hcf();

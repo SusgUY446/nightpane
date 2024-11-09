@@ -17,3 +17,4 @@ KiEntry:
 
 .halt:
     hlt
+    jmp .halt

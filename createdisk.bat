@@ -7,7 +7,7 @@ if exist root rd root /s /q
 md root
 robocopy limine root /s
 md root\system
-copy kernel\os.bin root\system
+copy kernel\oskrnl.elf root\system
 echo Partition the drive now
 diskpart /s c:\build\scripts\partition.txt
 mkdir Z:\EFI\BOOT

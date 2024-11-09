@@ -7,7 +7,7 @@ target("kernel")
     set_arch("elf64-x86-64") 
     add_files("src/*.c", "src/**/*.c")
     add_files("src/*.asm", "src/**/*.asm")
-    set_filename("os.bin")
+    set_filename("oskrnl.elf")
     set_targetdir(".")
     add_ldflags("-nostdlib", "-T linker.ld", {force = true})
 
