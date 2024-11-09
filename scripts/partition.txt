@@ -2,6 +2,6 @@ create vdisk file="c:\build\image\image.vhd" maximum=64 type=fixed
 select vdisk file="c:\build\image\image.vhd"
 attach vdisk
 create partition primary
-format fs=fat32 quick label="UEFI"
+format fs=fat32 quick label="System"
 assign letter Z
 exit
