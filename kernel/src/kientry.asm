@@ -5,7 +5,6 @@ stack_bottom:
 stack_top:
 
 section .data
-    loadmessage db "Loading RontoCores Kernel....", 10, 10, 0
 
 section .text
     global KiEntry
