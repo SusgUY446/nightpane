@@ -13,9 +13,7 @@ section .text
 
 KiEntry:
     mov rsp, stack_top     
-
     call KiMain
-
     cli
 
 .halt:

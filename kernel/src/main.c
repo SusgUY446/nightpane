@@ -1,9 +1,10 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include "draw.h"
+#include "drawing/draw.h"
 #include "limine.h"
-#include "text.h"
+#include "drawing/text.h"
+#include "terminal/terminal.h"
 
 
 __attribute__((used, section(".limine_requests")))
@@ -50,9 +51,10 @@ void KiMain(void) {
     }
 
     framebuffer = framebuffer_request.response->framebuffers[0];
+    KiChangeBackground(0x0000000);
 
-    KiDrawRect(10, 10, 10, 10, 0xfffff);
-    KiDrawText(90, 90, "Hi", 10, 0xaaaaaa);
+    KiTerminalPrint("H");
+    
 
     hcf();
 }
