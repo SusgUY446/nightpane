@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <stddef.h>
+
 void *memcpy(void *dest, const void *src, size_t n) {
     uint8_t *pdest = (uint8_t *)dest;
     const uint8_t *psrc = (const uint8_t *)src;
@@ -51,6 +52,14 @@ int memcmp(const void *s1, const void *s2, size_t n) {
     return 0;
 }
 
-void KiEntry(){
-    while(1){continue;}
+static void hcf(void) {
+    for (;;) {
+#if defined (__x86_64__)
+        asm ("hlt");
+#elif defined (__aarch64__) || defined (__riscv)
+        asm ("wfi");
+#elif defined (__loongarch64)
+        asm ("idle 0");
+#endif
+    }
 }
