@@ -33,7 +33,7 @@ static void hcf(void) {
     }
 }
 
-
+extern void KiTestAsmCLinkage();
 void KiMain(void) {
     if (LIMINE_BASE_REVISION_SUPPORTED == false) {
         hcf();
@@ -46,7 +46,7 @@ void KiMain(void) {
 
     framebuffer = framebuffer_request.response->framebuffers[0];
     KiChangeBackground(0x0000000);
-
+    KiTestAsmCLinkage();
     KiTerminalPrint("Y");
     
 
