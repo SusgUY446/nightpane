@@ -3,7 +3,6 @@
 #include <stdbool.h>
 #include "drawing/draw.h"
 #include "limine.h"
-#include "drawing/text.h"
 #include "terminal/terminal.h"
 
 
@@ -27,7 +26,7 @@ static volatile LIMINE_REQUESTS_END_MARKER;
 struct limine_framebuffer *framebuffer;
 
 
-static void hcf(void) {
+static void halt(void) {
     for (;;) {
         asm ("hlt");
     }
@@ -36,19 +35,20 @@ static void hcf(void) {
 extern void KiTestAsmCLinkage();
 void KiMain(void) {
     if (LIMINE_BASE_REVISION_SUPPORTED == false) {
-        hcf();
+        halt();
     }
 
     if (framebuffer_request.response == NULL
      || framebuffer_request.response->framebuffer_count < 1) {
-        hcf();
+        halt();
     }
 
     framebuffer = framebuffer_request.response->framebuffers[0];
+    
     KiChangeBackground(0x0000000);
     KiTestAsmCLinkage();
     KiTerminalPrint("Y");
     
 
-    hcf();
+    halt();
 }

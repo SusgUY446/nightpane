@@ -9,12 +9,15 @@ section .data
 section .text
     global KiEntry
     extern KiMain
+    extern KiSetupPaging
+    extern KiTestAsmCLinkage
 
 KiEntry:
+    
+    call KiSetupPaging 
     mov rsp, stack_top     
     call KiMain
     cli
-
 .halt:
     hlt
     jmp .halt
