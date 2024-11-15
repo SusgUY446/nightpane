@@ -1,5 +1,5 @@
 #include "terminal.h"
-
+#include "../driver/ps2/ps2.h"
 
 static int line = 0;
 static int line_cursor = 0;
@@ -31,3 +31,4 @@ void KiClearScreen(){
     KiChangeBackground(0x0000000);
     line = 0;
 }
+

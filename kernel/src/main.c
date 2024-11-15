@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include "drawing/draw.h"
+#include "driver/ps2/ps2.h"
 #include "limine.h"
 #include "terminal/terminal.h"
 
@@ -32,6 +33,20 @@ static void halt(void) {
     }
 }
 
+
+void test_gdt() {
+    uint64_t test_value = 0x12345678;
+    uint64_t *test_ptr = (uint64_t*)0x10; 
+
+    *test_ptr = test_value;
+
+    if (*test_ptr != test_value) {
+        KiTerminalPrint("Die!");
+        while(1); 
+    }
+
+}
+
 extern void KiTestAsmCLinkage();
 void KiMain(void) {
     if (LIMINE_BASE_REVISION_SUPPORTED == false) {
@@ -44,10 +59,15 @@ void KiMain(void) {
     }
 
     framebuffer = framebuffer_request.response->framebuffers[0];
-    
     KiChangeBackground(0x0000000);
     KiTestAsmCLinkage();
     KiTerminalPrint("Y");
+    KiTerminalPrint("Y");
+    //test_gdt();
+    while(1){
+        char idk = Ps2ReadKey();
+        KiTerminalPrint(&idk);
+    }
     
 
     halt();

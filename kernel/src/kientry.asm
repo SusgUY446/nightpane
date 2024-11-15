@@ -5,17 +5,18 @@ stack_bottom:
 stack_top:
 
 section .data
+    message db "Hello World", 10, 0
 
 section .text
     global KiEntry
     extern KiMain
     extern KiSetupPaging
-    extern KiTestAsmCLinkage
-
+    extern KiTerminalPrint
+    extern KiSetupGDT
 KiEntry:
-    
     call KiSetupPaging 
-    mov rsp, stack_top     
+    mov rsp, stack_top    
+    ;call KiSetupGDT
     call KiMain
     cli
 .halt:
