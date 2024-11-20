@@ -11,5 +11,5 @@
 
 void KiClearScreen();
 void KiTerminalPrint(char* status);
-
+void KiTerminalPrintF(char *format, ...);
 #endif
