@@ -1,5 +1,4 @@
 #include "terminal.h"
-#include "../driver/ps2/ps2.h"
 #include "extern/mini-printf.h"
 static int line = 0;
 static int line_cursor = 0;

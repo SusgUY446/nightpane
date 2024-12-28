@@ -2,9 +2,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include "drawing/draw.h"
-#include "driver/ps2/ps2.h"
 #include "limine.h"
-#include "runtimelib.h"
 #include "superheader.h"
 #include "terminal/terminal.h"
 
@@ -53,7 +51,8 @@ static void halt(void) {
     }
 }
 
-
+extern void KiSetupGDT();
+extern void KiTestAsmCLinkage();
 BOOTDATA btdta;
 
 
@@ -67,7 +66,6 @@ void KiMain(void) {
      || framebuffer_request.response->framebuffer_count < 1) {
         halt();
     }
-     
 
     framebuffer = framebuffer_request.response->framebuffers[0];
     KiChangeBackground(0x0000000);
@@ -89,9 +87,9 @@ void KiMain(void) {
     btdta.boottime = boot_time_request.response->boot_time;
     btdta.loadername = bootloader_info_request.response->name;
     
-    BOOTDATA data = RtlGetBootInformation();
-    KiTerminalPrintF("Loader is %s\nBoot time: %d\nFirmware type %d\n", data.loadername, data.boottime, data.firmwaretype);
-
+    KiTerminalPrint("Hi");
+    KiSetupGDT();
+    KiTerminalPrint("Worked");
     
     halt();
 }

@@ -14,9 +14,9 @@ section .text
     extern KiTerminalPrint
     extern KiSetupGDT
 KiEntry:
-    call KiSetupPaging 
+    ;call KiSetupPaging 
     mov rsp, stack_top    
-    ;call KiSetupGDT
+    call KiSetupGDT
     call KiMain
     cli
 .halt:
