@@ -62,7 +62,7 @@ BOOTDATA btdta;
 void TestDivideByZero() {
     volatile int a = 10;
     volatile int b = 0;
-    int c = a / b; // Should trigger exception
+    int c = a / b; 
     (void)c;
 }
 

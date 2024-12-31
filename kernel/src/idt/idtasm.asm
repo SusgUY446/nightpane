@@ -2,11 +2,13 @@ global KiISRDivideBy0ErrorLoader
 global KiUnknownInterruptLoader
 extern KiDivideBy0Error
 extern KiUnknownInterrupt
+extern KiCloseInterrupts
 
 section .text
 
 
 KiISRDivideBy0ErrorLoader:
+    cli
     push rax          
     push rcx
     push rdx
@@ -41,9 +43,11 @@ KiISRDivideBy0ErrorLoader:
     pop rdx
     pop rcx
     pop rax
+    sti
     iretq
 
 KiUnknownInterruptLoader:
+    cli
     push rax          
     push rcx
     push rdx
@@ -78,4 +82,5 @@ KiUnknownInterruptLoader:
     pop rdx
     pop rcx
     pop rax
+    sti
     iretq

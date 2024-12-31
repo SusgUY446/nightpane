@@ -52,22 +52,23 @@ void KiSetupIDT(){
 
 void KiDivideBy0Error(uint64_t* stack){
     //OSBugCheck("DIVIDE BY 0 ERROR");
-    //KiCloseInterrupts();
+    KiCloseInterrupts();
     KiTerminalPrint("Kernel Suicide: DIVIDE BY 0 ERROR");
-    // while(1){
-    //     KiHaltSystem();
-    //     continue;
-    // }
+    while(1){
+        KiHaltSystem();
+        continue;
+    }
+
     return;
 }
 
 void KiUnknownInterrupt(uint64_t* stack){
     //OSBugCheck("DIVIDE BY 0 ERROR");
-    //KiCloseInterrupts();
+    KiCloseInterrupts();
     KiTerminalPrint("Kernel Suicide: UNKNOWN INTERRUPT (WAS UNDEFINED!!!!!!)");
-    // while(1){
-    //     KiHaltSystem();
-    //     continue;
-    // }
+    while(1){
+        KiHaltSystem();
+        continue;
+    }
     return;
 }
