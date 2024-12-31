@@ -45,51 +45,63 @@ static volatile LIMINE_REQUESTS_END_MARKER;
 struct limine_framebuffer *framebuffer;
 
 
-static void halt(void) {
+void KiHaltSystem() {
     for (;;) {
         asm ("hlt");
     }
+}
+
+void KiCloseInterrupts() {
+    asm ("cli");  
 }
 
 extern void KiSetupGDT();
 extern void KiTestAsmCLinkage();
 BOOTDATA btdta;
 
+void TestDivideByZero() {
+    volatile int a = 10;
+    volatile int b = 0;
+    int c = a / b; // Should trigger exception
+    (void)c;
+}
 
 extern void KiTestAsmCLinkage();
 void KiMain(void) {
     if (LIMINE_BASE_REVISION_SUPPORTED == false) {
-        halt();
+        KiHaltSystem();
     }
 
     if (framebuffer_request.response == NULL
      || framebuffer_request.response->framebuffer_count < 1) {
-        halt();
+        KiHaltSystem();
     }
 
     framebuffer = framebuffer_request.response->framebuffers[0];
     KiChangeBackground(0x0000000);
+    KiTerminalPrint("Loading System.....\n");
     
     if (firmware_type_request.response == NULL) {
         KiTerminalPrint("Failure to Get Firmware Type\nHalting System");
-        halt();
+        KiHaltSystem();
     }
     if (boot_time_request.response == NULL) {
         KiTerminalPrint("Failure to Get Boot Time\nHalting System");
-        halt();
+        KiHaltSystem();
     }
     if (bootloader_info_request.response == NULL) {
         KiTerminalPrint("Failure to Get Bootloader Type\nHalting System");
-        halt();
+        KiHaltSystem();
     }
     
     btdta.firmwaretype = firmware_type_request.response->firmware_type;
     btdta.boottime = boot_time_request.response->boot_time;
     btdta.loadername = bootloader_info_request.response->name;
+    TestDivideByZero();
+    //KiTerminalPrintF("%d", i);
+    KiTerminalPrint("Hi");    
+
+
     
-    KiTerminalPrint("Hi");
-    KiSetupGDT();
-    KiTerminalPrint("Worked");
-    
-    halt();
+    KiHaltSystem();
 }

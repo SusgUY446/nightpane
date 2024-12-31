@@ -9,8 +9,8 @@ section .text
 KiTestAsmCLinkage:
     push rbp             
     mov rbp, rsp   
-    mov rax, fs:[0x0]     ; Read from the FS segment
-    mov rax, gs:[0x0]     ; Read from the GS segment
+    mov rdi, message
+    call KiTerminalPrint
     mov rsp, rbp          
     pop rbp   
     ret
