@@ -13,13 +13,21 @@ This current code is a rewrite of the older code (which i wrote when i didn't ev
 Checklist for Goals
 
 ✔️ Set up an IDT 
+
 ✔️ Set up a GDT
+
 ✔️ Set up the Stack
+
 ❌ Finish all interrupt handling
+
 ❌ Write a FAT32 Driver
+
 ❌ Write a Scripting language so it can be the main way to make apps
+
 ❌ Write a user shell
+
 ❌ Set up my own Virtual Memory manager (currently using what limine gives me)
+
 ❌ Replace Limine with my own UEFI Loader
 
 
