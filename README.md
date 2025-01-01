@@ -12,7 +12,7 @@ This current code is a rewrite of the older code (which i wrote when i didn't ev
 
 Checklist for Goals
 
-✔️ Set up an IDT 
+✔️ Set up an IDT (entry, not all interrupts are handled yet)
 
 ✔️ Set up a GDT
 
