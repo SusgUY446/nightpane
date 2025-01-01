@@ -1,11 +1,10 @@
 #include "../terminal/terminal.h"
-
+#include "../hal/hal.h"
 #define IDT_SIZE 256
 
-extern void KiHaltSystem();
-extern void KiCloseInterrupts();
 extern void KiISRDivideBy0ErrorLoader();
 extern void KiUnknownInterruptLoader();
+
 struct InterruptDescriptor64 {
    uint16_t offset_1;        
    uint16_t selector;        
@@ -52,10 +51,10 @@ void KiSetupIDT(){
 
 void KiDivideBy0Error(uint64_t* stack){
     //OSBugCheck("DIVIDE BY 0 ERROR");
-    KiCloseInterrupts();
+    HalClearInterrupts();
     KiTerminalPrint("Kernel Suicide: DIVIDE BY 0 ERROR");
     while(1){
-        KiHaltSystem();
+        HalHaltSystem();
         continue;
     }
 
@@ -64,10 +63,10 @@ void KiDivideBy0Error(uint64_t* stack){
 
 void KiUnknownInterrupt(uint64_t* stack){
     //OSBugCheck("DIVIDE BY 0 ERROR");
-    KiCloseInterrupts();
+    HalClearInterrupts();
     KiTerminalPrint("Kernel Suicide: UNKNOWN INTERRUPT (WAS UNDEFINED!!!!!!)");
     while(1){
-        KiHaltSystem();
+        HalHaltSystem();
         continue;
     }
     return;

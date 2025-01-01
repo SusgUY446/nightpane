@@ -17,4 +17,6 @@ typedef struct _BOOTDATA{
     uint64_t firmwaretype;
 } BOOTDATA;
 
+
+void KiHaltSystem();
 #endif

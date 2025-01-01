@@ -38,7 +38,7 @@ void KiTerminalPuts(char* status) {
     
     KiDrawText(1 + line_cursor, 12 * line, status, 1, 0xfffffff);
     line_cursor += 5;
-    //line++;
+    // line++;
     line_cursor = 0;
    
     if ((12 * line) >= framebuffer->height) {

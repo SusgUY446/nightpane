@@ -1,7 +1,7 @@
 section .bss
     align 16
 stack_bottom:
-    resb 655360       
+    resb 655360      
 stack_top:
 
 section .data
