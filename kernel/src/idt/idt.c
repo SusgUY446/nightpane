@@ -1,5 +1,5 @@
 #include "../terminal/terminal.h"
-#include "../hal/hal.h"
+#include "../HAL/hal.h"
 #define IDT_SIZE 256
 
 extern void KiISRDivideBy0ErrorLoader();

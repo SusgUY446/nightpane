@@ -5,7 +5,7 @@
 #include "limine.h"
 #include "superheader.h"
 #include "terminal/terminal.h"
-#include "hal/hal.h"
+#include "HAL/hal.h"
 #include "driver/ps2/ps2.h"
 
 __attribute__((used, section(".limine_requests")))
